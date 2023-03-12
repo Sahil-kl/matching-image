@@ -2,7 +2,7 @@ const User = require('../model/User')
 const ImageVerification = require('../model/image')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const response = require('../Res/response')
+const response = require('../res/response')
 
 
 const { body, validationResult } = require('express-validator')
@@ -157,7 +157,7 @@ exports.transaction =
         console.log('original======>', original)
         const check_original = await ImageVerification.findOne({ user_id: ObjectId(req.currentUser), original: original })
         if (!check_original) {
-            return response.ErrorResponseWithoutData(res, 'Original part doesnot match!')
+            return response.ErrorResponseWithoutData(res, 'Original part does not match!')
         }
         response.successResponseWithData(res, 'Note matched', check_original)
 
